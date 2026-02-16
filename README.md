@@ -16,16 +16,6 @@ S3-compatible file server that syncs to a git repository. Works with Obsidian's 
 - Single static binary (~6 MB), no runtime dependencies
 - Built-in [go-git](https://github.com/go-git/go-git) — no system `git` required
 
-## Architecture
-
-```mermaid
-graph LR
-    A[iPhone<br>Obsidian + Remotely Save] --> C[Cloudflare<br>HTTPS]
-    B[MacBook<br>Obsidian + Remotely Save] --> C
-    C --> D[VPS<br>git3 server]
-    D --> E[GitHub / GitLab]
-```
-
 ## Quick start
 
 ### Option A: Docker Compose (recommended)
