@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	"obsidian-sync/internal/git"
-	"obsidian-sync/internal/s3"
+	"git3/internal/git"
+	"git3/internal/s3"
 )
 
 type Config struct {
@@ -38,8 +38,8 @@ func main() {
 	flag.StringVar(&cfg.Region, "region", envOr("REGION", "us-east-1"), "S3 region")
 	flag.StringVar(&cfg.GitRepo, "git-repo", envOr("GIT_REPO", ""), "git remote URL")
 	flag.StringVar(&cfg.GitBranch, "git-branch", envOr("GIT_BRANCH", "main"), "git branch")
-	flag.StringVar(&cfg.GitUser, "git-user", envOr("GIT_USER", "Obsidian Sync"), "git commit user")
-	flag.StringVar(&cfg.GitEmail, "git-email", envOr("GIT_EMAIL", "obsidian@sync"), "git commit email")
+	flag.StringVar(&cfg.GitUser, "git-user", envOr("GIT_USER", "git3"), "git commit user")
+	flag.StringVar(&cfg.GitEmail, "git-email", envOr("GIT_EMAIL", "git3@sync"), "git commit email")
 	flag.StringVar(&cfg.GitToken, "git-token", envOr("GIT_TOKEN", ""), "git PAT for HTTPS auth")
 	debounce := flag.Int("debounce", envOrInt("DEBOUNCE", 10), "git sync debounce in seconds")
 	pullInterval := flag.Int("pull-interval", envOrInt("PULL_INTERVAL", 60), "git pull interval in seconds (0 to disable)")
@@ -64,10 +64,10 @@ func main() {
 	syncer.StartPuller(pullDuration)
 	handler := s3.NewHandler(cfg.Dir, cfg.Bucket, cfg.AccessKey, cfg.SecretKey, cfg.Region, syncer)
 
-	log.Printf("[obsidian-sync] listening on %s", cfg.Addr)
-	log.Printf("[obsidian-sync] bucket=%s dir=%s region=%s", cfg.Bucket, cfg.Dir, cfg.Region)
+	log.Printf("[git3] listening on %s", cfg.Addr)
+	log.Printf("[git3] bucket=%s dir=%s region=%s", cfg.Bucket, cfg.Dir, cfg.Region)
 	if cfg.GitRepo != "" {
-		log.Printf("[obsidian-sync] git=%s branch=%s debounce=%s pull=%s", cfg.GitRepo, cfg.GitBranch, cfg.Debounce, pullDuration)
+		log.Printf("[git3] git=%s branch=%s debounce=%s pull=%s", cfg.GitRepo, cfg.GitBranch, cfg.Debounce, pullDuration)
 	}
 
 	if err := http.ListenAndServe(cfg.Addr, s3.LoggingMiddleware(handler)); err != nil {

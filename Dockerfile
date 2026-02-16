@@ -1,4 +1,4 @@
 FROM scratch
-COPY obsidian-sync /usr/local/bin/obsidian-sync
+COPY git3 /usr/local/bin/git3
 COPY ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-ENTRYPOINT ["/usr/local/bin/obsidian-sync"]
+ENTRYPOINT ["/usr/local/bin/git3"]

@@ -29,12 +29,12 @@ jobs:
         with:
           go-version: "1.26"
       - name: Build static binary
-        run: CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o obsidian-sync .
+        run: CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o git3 .
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
-          name: obsidian-sync
-          path: obsidian-sync
+          name: git3
+          path: git3
 
   docker:
     needs: build
@@ -44,9 +44,9 @@ jobs:
       - name: Download binary
         uses: actions/download-artifact@v4
         with:
-          name: obsidian-sync
+          name: git3
       - name: Make binary executable
-        run: chmod +x obsidian-sync
+        run: chmod +x git3
       - name: Copy CA certificates
         run: cp /etc/ssl/certs/ca-certificates.crt ca-certificates.crt
       - name: Log in to ghcr.io

@@ -1,7 +1,7 @@
 services:
-  obsidian-sync:
-    image: ghcr.io/0xa1bed0/obsidian-sync:latest
-    container_name: obsidian-sync
+  git3:
+    image: ghcr.io/0xa1bed0/git3:latest
+    container_name: git3
     restart: unless-stopped
     ports:
       - "80:80"
