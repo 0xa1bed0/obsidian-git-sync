@@ -2,7 +2,7 @@
 
 [![Go](https://img.shields.io/badge/Go-1.26-00ADD8?logo=go)](https://go.dev)
 [![License: ELv2](https://img.shields.io/badge/License-ELv2-blue)](LICENSE)
-[![CI](https://github.com/0xa1bed0/obsidian-sync/actions/workflows/release.yml/badge.svg)](https://github.com/0xa1bed0/obsidian-git-sync/actions/workflows/release.yml)
+[![CI](https://github.com/0xa1bed0/obsidian-git-sync/actions/workflows/release.yml/badge.svg)](https://github.com/0xa1bed0/obsidian-git-sync/actions/workflows/release.yml)
 [![GHCR](https://img.shields.io/badge/ghcr.io-obsidian--sync-blue?logo=github)](https://ghcr.io/0xa1bed0/obsidian-git-sync)
 
 S3-compatible server for Obsidian's [Remotely Save](https://github.com/remotely-save/remotely-save) plugin with built-in git auto-commit and push.
